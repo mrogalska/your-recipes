@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">your-recipes</string>
+    <string name="title_activity_main">your-recipes</string>
+    <string name="package_name">io.ionic.recipes</string>
+    <string name="custom_url_scheme">io.ionic.recipes</string>
+</resources>
