@@ -49,14 +49,49 @@ ion-menu.md ion-item {
   border-radius: 4px;
 }
 
-// podświetlenie wybranego elementu
-ion-menu.md ion-item.selected {
+// if chosen breakfast
+ion-menu.md ion-item.breakfast {
+  --background: rgba(var(--ion-color-danger-rgb), 0.14);
+}
+
+ion-menu.md ion-item.breakfast ion-icon, ion-item.breakfast, ion-menu.ios ion-item.breakfast ion-icon {
+  color: var(--ion-color-danger);
+}
+
+// if chosen desserts
+ion-menu.md ion-item.desserts {
+  --background: rgba(var(--ion-color-secondary-rgb), 0.14);
+}
+
+ion-menu.md ion-item.desserts ion-icon, ion-item.desserts, ion-menu.ios ion-item.desserts ion-icon {
+  color: var(--ion-color-secondary);
+}
+
+// if chosen dinner
+ion-menu.md ion-item.dinner {
   --background: rgba(var(--ion-color-warning-rgb), 0.14);
 }
 
-// ikonki i napisy zaznaczone
-ion-menu.md ion-item.selected ion-icon, ion-item.selected, ion-menu.ios ion-item.selected ion-icon {
+ion-menu.md ion-item.dinner ion-icon, ion-item.dinner, ion-menu.ios ion-item.dinner ion-icon {
   color: var(--ion-color-warning);
+}
+
+// if chosen drinks
+ion-menu.md ion-item.drinks {
+  --background: rgba(var(--ion-color-tertiary-rgb), 0.14);
+}
+
+ion-menu.md ion-item.drinks ion-icon, ion-item.drinks, ion-menu.ios ion-item.drinks ion-icon {
+  color: var(--ion-color-tertiary);
+}
+
+// if chosen snacks
+ion-menu.md ion-item.snacks {
+  --background: rgba(var(--ion-color-success-rgb), 0.14);
+}
+
+ion-menu.md ion-item.snacks ion-icon, ion-item.snacks, ion-menu.ios ion-item.snacks ion-icon {
+  color: var(--ion-color-success);
 }
 
 // ikonki niezaznaczone
