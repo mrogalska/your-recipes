@@ -60,20 +60,20 @@ ion-menu.md ion-item.breakfast ion-icon, ion-item.breakfast, ion-menu.ios ion-it
 
 // if chosen desserts
 ion-menu.md ion-item.desserts {
-  --background: rgba(var(--ion-color-secondary-rgb), 0.14);
+  --background: rgba(var(--ion-color-primary-rgb), 0.14);
 }
 
 ion-menu.md ion-item.desserts ion-icon, ion-item.desserts, ion-menu.ios ion-item.desserts ion-icon {
-  color: var(--ion-color-secondary);
+  color: var(--ion-color-primary);
 }
 
 // if chosen dinner
 ion-menu.md ion-item.dinner {
-  --background: rgba(var(--ion-color-warning-rgb), 0.14);
+  --background: rgba(var(--ion-color-secondary-rgb), 0.14);
 }
 
 ion-menu.md ion-item.dinner ion-icon, ion-item.dinner, ion-menu.ios ion-item.dinner ion-icon {
-  color: var(--ion-color-warning);
+  color: var(--ion-color-secondary);
 }
 
 // if chosen drinks
@@ -85,13 +85,22 @@ ion-menu.md ion-item.drinks ion-icon, ion-item.drinks, ion-menu.ios ion-item.dri
   color: var(--ion-color-tertiary);
 }
 
-// if chosen snacks
-ion-menu.md ion-item.snacks {
+// if chosen salads
+ion-menu.md ion-item.salads {
   --background: rgba(var(--ion-color-success-rgb), 0.14);
 }
 
-ion-menu.md ion-item.snacks ion-icon, ion-item.snacks, ion-menu.ios ion-item.snacks ion-icon {
+ion-menu.md ion-item.salads ion-icon, ion-item.salads, ion-menu.ios ion-item.salads ion-icon {
   color: var(--ion-color-success);
+}
+
+// if chosen lunch
+ion-menu.md ion-item.lunch {
+  --background: rgba(var(--ion-color-warning-rgb), 0.14);
+}
+
+ion-menu.md ion-item.lunch ion-icon, ion-item.lunch, ion-menu.ios ion-item.lunch ion-icon {
+  color: var(--ion-color-warning);
 }
 
 // ikonki niezaznaczone
