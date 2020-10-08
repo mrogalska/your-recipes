@@ -9,10 +9,11 @@
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" 
                       [class.breakfast]="selectedIndex == i && selectedIndex == 0"
-                      [class.dinner]="selectedIndex == i && selectedIndex == 1"
-                      [class.snacks]="selectedIndex == i && selectedIndex == 2"
-                      [class.desserts]="selectedIndex == i && selectedIndex == 3"
-                      [class.drinks]="selectedIndex == i && selectedIndex == 4">
+                      [class.lunch]="selectedIndex == i && selectedIndex == 1"
+                      [class.salads]="selectedIndex == i && selectedIndex == 2"
+                      [class.dinner]="selectedIndex == i && selectedIndex == 3"
+                      [class.desserts]="selectedIndex == i && selectedIndex == 4"
+                      [class.drinks]="selectedIndex == i && selectedIndex == 5">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>

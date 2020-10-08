@@ -18,19 +18,24 @@ export class AppComponent implements OnInit {
       icon: 'nutrition'
     },
     {
-      title: 'Dinner',
-      url: '/folder/Dinner',
-      icon: 'pizza'
-    },
-    {
-      title: 'Snacks',
-      url: '/folder/Snacks',
+      title: 'Lunch',
+      url: '/folder/Lunch',
       icon: 'fast-food'
     },
     {
-      title: 'Desserts',
-      url: '/folder/Desserts',
-      icon: 'ice-cream'
+      title: 'Salads',
+      url: '/folder/Salads',
+      icon: 'leaf'
+    },
+    {
+      title: 'Dinner',
+      url: '/folder/Dinner',
+      icon: 'restaurant'
+    },
+    {
+    title: 'Desserts',
+    url: '/folder/Desserts',
+    icon: 'ice-cream'
     },
     {
       title: 'Drinks',

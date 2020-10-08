@@ -6,12 +6,12 @@ describe('new App', () => {
   beforeEach(() => {
     page = new AppPage();
   });
-  describe('default screen', () => {
-    beforeEach(() => {
-      page.navigateTo('/Inbox');
-    });
-    it('should say Inbox', () => {
-      expect(page.getParagraphText()).toContain('Inbox');
-    });
-  });
+  // describe('default screen', () => {
+  //   beforeEach(() => {
+  //     page.navigateTo('/Breakfast');
+  //   });
+  //   it('should say Breakfast', () => {
+  //     expect(page.getParagraphText()).toContain('Breakfast');
+  //   });
+  // });
 });
