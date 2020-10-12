@@ -1,5 +1,3 @@
-import { RecipeType } from "./recipe-type";
-
 export interface Recipe {
     id: number;
     title: string;
@@ -8,5 +6,5 @@ export interface Recipe {
     ingridients: string[];
     method: string;
     pic: string;
-    recipeType: RecipeType;
+    recipeType: string;
 }
