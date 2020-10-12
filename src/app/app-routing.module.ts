@@ -10,7 +10,11 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },  {
+    path: 'add-new',
+    loadChildren: () => import('./add-new/add-new.module').then( m => m.AddNewPageModule)
   }
+
 ];
 
 @NgModule({
