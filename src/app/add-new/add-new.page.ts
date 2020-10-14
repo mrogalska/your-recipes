@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-new',
@@ -7,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewPage implements OnInit {
   url: string | ArrayBuffer;
+  ingridientsAmount: number;
 
-  constructor() { }
+  constructor(public toastController: ToastController) { }
 
   ngOnInit() {}
 
 
-  onSelectFile(event) {
+  onSelectFile(event): void {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
@@ -23,6 +25,24 @@ export class AddNewPage implements OnInit {
         this.url = event.target.result;
       }
     }
+  }
+
+  checkIfInteger(event): void {
+    this.ingridientsAmount = Number(event.target.value);
+    if(this.ingridientsAmount < 0 || !Number.isInteger(this.ingridientsAmount)) {
+      this.presentToast();
+      console.log("tak nie wolno");
+     } else {
+      console.log("jest ok");
+    }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your settings have been saved.',
+      duration: 2000
+    });
+    toast.present();
   }
 
 }

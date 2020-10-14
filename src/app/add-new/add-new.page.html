@@ -31,6 +31,11 @@
   </ion-item>
 
   <ion-item>
+    <ion-label position="stacked">Ingridients amount</ion-label>
+    <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
+  </ion-item>
+
+  <ion-item>
     <ion-label position="stacked">Ingridients</ion-label>
     <ion-textarea></ion-textarea>
   </ion-item>
@@ -39,6 +44,7 @@
     <ion-label position="stacked">Method</ion-label>
     <ion-textarea></ion-textarea>
   </ion-item>
+
 
 
 </ion-content>
