@@ -6,36 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-new.page.scss'],
 })
 export class AddNewPage implements OnInit {
+  url: string | ArrayBuffer;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]);
+
+      reader.onload = (event) => {
+        this.url = event.target.result;
+      }
+    }
   }
 
-  loadImageFromDevice(event) {
-
-    const file = event.target.files[0];
-  
-    const reader = new FileReader();
-  
-    reader.readAsArrayBuffer(file);
-  
-    reader.onload = () => {
-  
-      // get the blob of the image:
-      let blob: Blob = new Blob([new Uint8Array((reader.result as ArrayBuffer))]);
-  
-      // create blobURL, such that we could use it in an image element:
-      let blobURL: string = URL.createObjectURL(blob);
-  
-    };
-  
-    reader.onerror = (error) => {
-  
-      //handle errors
-  
-    };
-  };
-
-
 }
+
+
