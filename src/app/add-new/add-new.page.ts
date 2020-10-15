@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-add-new',
   templateUrl: './add-new.page.html',
@@ -8,7 +9,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddNewPage implements OnInit {
   url: string | ArrayBuffer;
-  ingridientsAmount: number;
+  ingridientsAmount: number = 0;
+  ingridientArr: any[];
 
   constructor(public toastController: ToastController) { }
 
@@ -35,6 +37,11 @@ export class AddNewPage implements OnInit {
       event.target.style.color = "#ff4961";
      } else {
       event.target.style.color = "#f4f5f8";
+      var arr = new Array(this.ingridientsAmount)
+      for(var i = 0; i < arr.length; i++) {
+        arr[i] = "•";
+      }
+      console.log(arr);
     }
   }
 
@@ -42,7 +49,8 @@ export class AddNewPage implements OnInit {
     const toast = await this.toastController.create({
       message: 'Please provide a postive integer',
       duration: 2000,
-      color: "danger"
+      color: "danger",
+      position: "bottom"
     });
     toast.present();
   }

@@ -6,14 +6,16 @@
 
 <ion-content>
 
-  <ion-button color="light" expand="block" text-center>
-    <ion-icon name="image"></ion-icon>
-    <ion-input type="file" (change)="onSelectFile($event)" accept="image/png, image/jpeg"></ion-input>
-  </ion-button>
-  <div class="img-container">
-    <img [src]="url" alt="" height="200" >
-  </div>
-  
+  <ion-item class="add-image">
+    <ion-label position="fixed">
+      <ion-icon name="image"></ion-icon>
+    </ion-label>
+    <ion-input slot="end" type="file" (change)="onSelectFile($event)" accept="image/png, image/jpeg"></ion-input>
+    <div *ngIf="url" class="img-container">
+      <img [src]="url" alt="">
+    </div>
+    
+  </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Title</ion-label>
@@ -26,7 +28,8 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Time (min)</ion-label>
+    <ion-label position="stacked">Time</ion-label>
+    <ion-note slot="end" color="medium">min</ion-note>
     <ion-input type="number"></ion-input>
   </ion-item>
 
@@ -37,14 +40,16 @@
 
   <ion-item>
     <ion-label position="stacked">Ingridients</ion-label>
-    <ion-textarea></ion-textarea>
+    <div *ngFor="let item of arr">
+      <ion-input type="text">
+        <ion-note slot="start" color="medium">{{ item }}</ion-note>
+      </ion-input>
+    </div>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Method</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-textarea autoGrow></ion-textarea>
   </ion-item>
-
-
 
 </ion-content>
