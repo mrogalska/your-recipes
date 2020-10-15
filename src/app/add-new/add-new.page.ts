@@ -29,18 +29,20 @@ export class AddNewPage implements OnInit {
 
   checkIfInteger(event): void {
     this.ingridientsAmount = Number(event.target.value);
-    if(this.ingridientsAmount < 0 || !Number.isInteger(this.ingridientsAmount)) {
+    if(this.ingridientsAmount <= 0 || !Number.isInteger(this.ingridientsAmount)) {
       this.presentToast();
-      console.log("tak nie wolno");
+      event.target.class;
+      event.target.style.color = "#ff4961";
      } else {
-      console.log("jest ok");
+      event.target.style.color = "#f4f5f8";
     }
   }
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Your settings have been saved.',
-      duration: 2000
+      message: 'Please provide a postive integer',
+      duration: 2000,
+      color: "danger"
     });
     toast.present();
   }
