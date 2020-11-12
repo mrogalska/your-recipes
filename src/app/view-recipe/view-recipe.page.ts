@@ -28,11 +28,17 @@ export class ViewRecipePage implements OnInit {
     this.getSelectedRecipe();
   }
 
+  // get data from service
 
   getRecipes(): void {
     this._recipeService.getRecipes()
         .subscribe(recipes => this.recipes = recipes);
   }
+
+
+  // getting current url and slicing string which contains
+  // recipe ID, then searching array of recipes for this ID
+  // in order to display data  
 
   getSelectedRecipe(): void {
     this.id = this.router.url.slice(13);

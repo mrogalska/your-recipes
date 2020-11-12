@@ -17,6 +17,8 @@ export class AddNewPage implements OnInit {
   ngOnInit() {}
 
 
+  // allows to preview selected photo
+
   onSelectFile(event): void {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -29,6 +31,14 @@ export class AddNewPage implements OnInit {
     }
   }
 
+
+  //  checking if provided amount of ingridients is positive
+  //  integer
+
+  //  TODO: user will choose number of ingridients in recipe
+  //  and function will create bullet list with proper amount
+  //  of space for ingridients
+
   checkIfInteger(event): void {
     this.ingridientsAmount = Number(event.target.value);
     if(this.ingridientsAmount <= 0 || !Number.isInteger(this.ingridientsAmount)) {
@@ -37,6 +47,8 @@ export class AddNewPage implements OnInit {
       event.target.style.color = "#ff4961";
      } else {
       event.target.style.color = "#f4f5f8";
+
+      // not finished
       var arr = new Array(this.ingridientsAmount)
       for(var i = 0; i < arr.length; i++) {
         arr[i] = "•";
@@ -44,6 +56,10 @@ export class AddNewPage implements OnInit {
       console.log(arr);
     }
   }
+
+
+  // toast notificiation warning that provided number is not
+  // positive integer
 
   async presentToast() {
     const toast = await this.toastController.create({

@@ -24,6 +24,8 @@ export class AllRecipesPage implements OnInit {
 
   }
 
+  // get data from service
+  
   getRecipes(): void {
     this._recipeService.getRecipes()
         .subscribe(recipes => this.recipes = recipes);
