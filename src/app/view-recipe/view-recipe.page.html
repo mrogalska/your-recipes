@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img [src] = selectedRecipe.pic>
+    <ion-card-header>
+      <ion-card-subtitle>Time: {{ selectedRecipe.time }} min</ion-card-subtitle>
+      <ion-card-subtitle>Servings: {{ selectedRecipe.servings }}</ion-card-subtitle>
+      <ion-card-title>{{ selectedRecipe.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ selectedRecipe.method }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
