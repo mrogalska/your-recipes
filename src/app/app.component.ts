@@ -14,32 +14,32 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Breakfast',
-      url: '/folder/Breakfast',
+      url: '/all-recipes/Breakfast',
       icon: 'nutrition'
     },
     {
       title: 'Lunch',
-      url: '/folder/Lunch',
+      url: '/all-recipes/Lunch',
       icon: 'fast-food'
     },
     {
       title: 'Salads',
-      url: '/folder/Salads',
+      url: '/all-recipes/Salads',
       icon: 'leaf'
     },
     {
       title: 'Dinner',
-      url: '/folder/Dinner',
+      url: '/all-recipes/Dinner',
       icon: 'restaurant'
     },
     {
     title: 'Desserts',
-    url: '/folder/Desserts',
+    url: '/all-recipes/Desserts',
     icon: 'ice-cream'
     },
     {
       title: 'Drinks',
-      url: '/folder/Drinks',
+      url: '/all-recipes/Drinks',
       icon: 'wine'
     },
   ];
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
+    const path = window.location.pathname.split('all-recipes/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }

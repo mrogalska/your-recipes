@@ -4,15 +4,20 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Breakfast',
+    redirectTo: 'all-recipes/Breakfast',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },  {
+    path: 'all-recipes/:id',
+    loadChildren: () => import('./all-recipes/all-recipes.module').then( m => m.AllRecipesPageModule)
+  },
+  {
     path: 'add-new',
     loadChildren: () => import('./add-new/add-new.module').then( m => m.AddNewPageModule)
+  },
+  {
+    path: 'view-recipe/:id',
+    loadChildren: () => import('./view-recipe/view-recipe.module').then( m => m.ViewRecipePageModule)
   }
 
 ];
