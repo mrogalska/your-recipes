@@ -24,28 +24,50 @@
 
   <ion-item>
     <ion-label position="stacked">Servings</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Time</ion-label>
-    <ion-note slot="end" color="medium">min</ion-note>
-    <ion-input type="number"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="stacked">Ingridients amount</ion-label>
+    <ion-note slot="end">min</ion-note>
     <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Ingridients</ion-label>
-    <div *ngFor="let item of arr">
-      <ion-input type="text">
-        <ion-note slot="start" color="medium">{{ item }}</ion-note>
-      </ion-input>
-    </div>
+    <ion-button fill="clear" size="small" (click) = "addItem()">
+      <ion-icon name="add" size="default"></ion-icon>
+      New item
+    </ion-button>
   </ion-item>
+  
+  <form ngNoForm>
+    <div *ngFor="let item of ingridientList; let i = index">     
+      <ion-item> 
+        <ion-input type="text">
+          <ion-note slot="start" size="large">• </ion-note>{{ item }}
+        </ion-input>
+        <ion-button fill="clear" size="small" color="danger" (click)="deleteItem(i)">
+          <ion-icon name="remove" size="large"></ion-icon>
+        </ion-button> 
+      </ion-item>
+      </div>
+    </form>
+
+    <!-- <ion-item>
+      <ion-label position="stacked">Ingridients amount</ion-label>
+      <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Ingridients</ion-label>
+      <div *ngFor="let item of arr">
+        <ion-input type="text">
+          <ion-note slot="start" color="medium">{{ item }}</ion-note>
+        </ion-input>
+      </div>
+    </ion-item> -->
+   
 
   <ion-item>
     <ion-label position="stacked">Method</ion-label>

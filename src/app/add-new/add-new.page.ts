@@ -8,9 +8,14 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./add-new.page.scss'],
 })
 export class AddNewPage implements OnInit {
+  // photo URL
   url: string | ArrayBuffer;
-  ingridientsAmount: number = 0;
-  ingridientArr: any[];
+  // variable for checking if provided time or number of servings is positive integer
+  elementsAmount: number = 0;
+  // adds empty space for providing ingridient
+  newIngridient: string;
+  // list of ingridients
+  ingridientList: string[] = [];
 
   constructor(public toastController: ToastController) { }
 
@@ -32,31 +37,19 @@ export class AddNewPage implements OnInit {
   }
 
 
-  //  checking if provided amount of ingridients is positive
+  //  checking if provided number is positive
   //  integer
 
-  //  TODO: user will choose number of ingridients in recipe
-  //  and function will create bullet list with proper amount
-  //  of space for ingridients
-
   checkIfInteger(event): void {
-    this.ingridientsAmount = Number(event.target.value);
-    if(this.ingridientsAmount <= 0 || !Number.isInteger(this.ingridientsAmount)) {
+    this.elementsAmount = Number(event.target.value);
+    if(this.elementsAmount <= 0 || !Number.isInteger(this.elementsAmount)) {
       this.presentToast();
       event.target.class;
       event.target.style.color = "#ff4961";
      } else {
       event.target.style.color = "#f4f5f8";
-
-      // not finished
-      var arr = new Array(this.ingridientsAmount)
-      for(var i = 0; i < arr.length; i++) {
-        arr[i] = "•";
-      }
-      console.log(arr);
     }
   }
-
 
   // toast notificiation warning that provided number is not
   // positive integer
@@ -69,6 +62,18 @@ export class AddNewPage implements OnInit {
       position: "bottom"
     });
     toast.present();
+  }
+
+
+  // add item to an ingridient list
+  addItem(){    
+    this.ingridientList.push(this.newIngridient);
+    this.newIngridient = "";
+  }
+
+  // delete item from an ingridient list
+  deleteItem(i){
+    this.ingridientList.splice(i, 1);
   }
 
 }
