@@ -6,7 +6,17 @@
 
 <ion-content>
 
-  <ion-item class="add-image">
+  <ion-item class="first-item">
+    <ion-label class="type" color="dark" position="fixed">
+      {{ selectedType }}
+    </ion-label>
+    <ion-button fill="clear" size="small" (click)="showPicker()">
+      Select type
+      <ion-icon name="caret-down-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-item>
     <ion-label position="fixed">
       <ion-icon name="image"></ion-icon>
     </ion-label>
@@ -14,21 +24,20 @@
     <div *ngIf="url" class="img-container">
       <img [src]="url" alt="">
     </div>
-    
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Title</ion-label>
+    <ion-label position="fixed">Title</ion-label>
     <ion-input type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Servings</ion-label>
+    <ion-label position="fixed">Servings</ion-label>
     <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Time</ion-label>
+    <ion-label position="fixed">Time</ion-label>
     <ion-note slot="end">min</ion-note>
     <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
   </ion-item>
@@ -51,26 +60,12 @@
           <ion-icon name="remove" size="large"></ion-icon>
         </ion-button> 
       </ion-item>
-      </div>
-    </form>
-
-    <!-- <ion-item>
-      <ion-label position="stacked">Ingridients amount</ion-label>
-      <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label position="stacked">Ingridients</ion-label>
-      <div *ngFor="let item of arr">
-        <ion-input type="text">
-          <ion-note slot="start" color="medium">{{ item }}</ion-note>
-        </ion-input>
-      </div>
-    </ion-item> -->
+    </div>
+  </form>
    
 
   <ion-item>
-    <ion-label position="stacked">Method</ion-label>
+    <ion-label position="fixed">Method</ion-label>
     <ion-textarea autoGrow></ion-textarea>
   </ion-item>
 

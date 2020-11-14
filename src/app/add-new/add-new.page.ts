@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { PickerController, ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { PickerOptions } from "@ionic/core";
 
 
 @Component({
@@ -16,8 +18,12 @@ export class AddNewPage implements OnInit {
   newIngridient: string;
   // list of ingridients
   ingridientList: string[] = [];
+  // array with types of recipes
+  recipeType: string[] = ["Breakfast", "Lunch", "Salads", "Dinner", "Desserts", "Drinks"];
+  // variable which holds chosen type of recipe
+  selectedType = "Breakfast";
 
-  constructor(public toastController: ToastController) { }
+  constructor(public toastController: ToastController, public pickerController: PickerController, public alertController: AlertController,) { }
 
   ngOnInit() {}
 
@@ -74,6 +80,46 @@ export class AddNewPage implements OnInit {
   // delete item from an ingridient list
   deleteItem(i){
     this.ingridientList.splice(i, 1);
+  }
+
+
+  // show picker with types of recipe to choose
+  async showPicker() {
+    let options: PickerOptions = {
+      buttons: [
+        {
+          text: "Cancel",
+          role: 'cancel'
+        },
+        {
+          text:'Select',
+
+          // executing code when clicked "Select"
+          handler:(value:any) => {
+            picker.onDidDismiss().then(async data => {
+              let col = await picker.getColumn("Type");
+              this.selectedType = col.options[col.selectedIndex].text;
+            })
+          }
+        }
+      ],
+      columns:[{
+        name:'Type',
+        options:this.getColumnOptions()
+      }]
+    };
+
+    let picker = await this.pickerController.create(options);
+    picker.present();
+
+  }
+
+  getColumnOptions(){
+    let options = [];
+    this.recipeType.forEach(x => {
+      options.push({text:x,value:x});
+    });
+    return options;
   }
 
 }
