@@ -14,6 +14,8 @@ export class ViewRecipePage implements OnInit {
   id: string = "";
   recipeId: number = 0;
   selectedRecipe: Recipe;
+  ingridients: string[];
+
 
 
   constructor(
@@ -44,8 +46,8 @@ export class ViewRecipePage implements OnInit {
     this.id = this.router.url.slice(13);
     this.recipeId = parseInt(this.id);
     let item = this.recipes.find(i => i.id === this.recipeId);
-    this.selectedRecipe = item
-    console.log(this.selectedRecipe);
+    this.selectedRecipe = item;
+    this.ingridients = this.selectedRecipe.ingridients;
   }
 
 }
