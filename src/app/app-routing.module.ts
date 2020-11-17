@@ -9,15 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'all-recipes/:id',
-    loadChildren: () => import('./all-recipes/all-recipes.module').then( m => m.AllRecipesPageModule)
+    loadChildren: () => import('./pages/all-recipes/all-recipes.module').then( m => m.AllRecipesPageModule)
   },
   {
     path: 'add-new',
-    loadChildren: () => import('./add-new/add-new.module').then( m => m.AddNewPageModule)
+    loadChildren: () => import('./pages/add-new/add-new.module').then( m => m.AddNewPageModule)
   },
   {
     path: 'view-recipe/:id',
-    loadChildren: () => import('./view-recipe/view-recipe.module').then( m => m.ViewRecipePageModule)
+    loadChildren: () => import('./pages/view-recipe/view-recipe.module').then( m => m.ViewRecipePageModule)
   }
 
 ];
