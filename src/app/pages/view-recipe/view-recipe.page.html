@@ -1,42 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title></ion-title>
+    <ion-title>Recipe</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <ion-card>
-
-    
-    <ion-card-header>
-      <img [src] = selectedRecipe.pic>
-
-      
-      <ion-card-subtitle>Time: {{ selectedRecipe.time }} min</ion-card-subtitle>
-      <ion-card-subtitle>Servings: {{ selectedRecipe.servings }}</ion-card-subtitle>
-
-      <br>
-
-      <ion-card-title>{{ selectedRecipe.title }}</ion-card-title>
-
-
-    </ion-card-header>
-
-    
-
-    <ion-card-content>
-      <hr>
-      <br>
+ 
+<ion-content padding>
+  <div *ngIf="recipe">
+    <ion-card>
+      <ion-card-header>
+        <img [src]="recipe.pic" alt="">
+        <ion-card-subtitle>Time: {{ recipe.time }} min</ion-card-subtitle>
+        <ion-card-subtitle>Servings: {{ recipe.servings }}</ion-card-subtitle>
+        <br>
+        <ion-card-title>{{ recipe.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <hr>
+        <br>
       <ion-card-subtitle>Ingrididients</ion-card-subtitle>
-      <div *ngFor="let ingridient of ingridients">
-        <p>• {{ ingridient }}</p>
-      </div>
-
+      <p> {{ ingridients }} </p>
       <br>
-
       <ion-card-subtitle>Method</ion-card-subtitle>
-      <p>{{ selectedRecipe.method }}</p>
-      
-    </ion-card-content>
-  </ion-card>
+      <p>{{ recipe.method }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

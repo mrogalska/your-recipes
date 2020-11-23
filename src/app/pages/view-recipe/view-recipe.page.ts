@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/models/recipe';
 import { RecipeService } from "src/app/services/recipe.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { DatabaseService } from './../../services/database.service';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-view-recipe',
@@ -10,11 +13,8 @@ import {Location} from '@angular/common';
   styleUrls: ['./view-recipe.page.scss'],
 })
 export class ViewRecipePage implements OnInit {
-  recipes: Recipe[];
-  id: string = "";
-  recipeId: number = 0;
-  selectedRecipe: Recipe;
-  ingridients: string[];
+  recipe: Recipe = null;
+  ingridients = '';
 
 
 
@@ -22,32 +22,27 @@ export class ViewRecipePage implements OnInit {
     private _recipeService: RecipeService,
     public route: ActivatedRoute,
     public router: Router,
-    public location: Location
+    public location: Location,
+    private db: DatabaseService,
+    private toast: ToastController,
   ) { }
 
   ngOnInit() {
-    this.getRecipes();
-    this.getSelectedRecipe();
+    this.route.paramMap.subscribe(params => {
+      let recipeId = params.get('id');
+ 
+      this.db.getRecipe(recipeId).then(data => {
+        this.recipe = data;
+        this.ingridients = this.recipe.ingridients.join(',');
+      });
+    });
   }
 
-  // get data from service
-
-  getRecipes(): void {
-    this._recipeService.getRecipes()
-        .subscribe(recipes => this.recipes = recipes);
+  deleteRecipe() {
+    this.db.deleteRecipe(this.recipe.id).then(() => {
+      this.router.navigateByUrl('/');
+    });
   }
 
-
-  // getting current url and slicing string which contains
-  // recipe ID, then searching array of recipes for this ID
-  // in order to display data  
-
-  getSelectedRecipe(): void {
-    this.id = this.router.url.slice(13);
-    this.recipeId = parseInt(this.id);
-    let item = this.recipes.find(i => i.id === this.recipeId);
-    this.selectedRecipe = item;
-    this.ingridients = this.selectedRecipe.ingridients;
-  }
 
 }
