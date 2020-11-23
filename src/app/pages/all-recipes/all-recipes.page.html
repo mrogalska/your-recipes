@@ -27,7 +27,7 @@
       <ng-container *ngFor = "let recipe of recipes">
         <ion-col *ngIf = "this._router.url == '/all-recipes/' + recipe.recipeType" size-md="4" size-sm="6" size-xs="12">
           <ion-card [routerLink]="['/view-recipe/'+recipe.id]">
-            <img [src] = recipe.pic>
+            <img [src] = "recipe.pic">
             <ion-card-header>
               <ion-card-subtitle>Time: {{ recipe.time }} min</ion-card-subtitle>
               <ion-card-subtitle>Servings: {{ recipe.servings }}</ion-card-subtitle>
