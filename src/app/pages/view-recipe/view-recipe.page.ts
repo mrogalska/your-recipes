@@ -33,7 +33,7 @@ export class ViewRecipePage implements OnInit {
  
       this.db.getRecipe(recipeId).then(data => {
         this.recipe = data;
-        this.ingridients = this.recipe.ingridients.join(',');
+        this.ingridients = this.recipe.ingridients.join(', ');
       });
     });
   }
@@ -42,6 +42,17 @@ export class ViewRecipePage implements OnInit {
     this.db.deleteRecipe(this.recipe.id).then(() => {
       this.router.navigateByUrl('/');
     });
+    this.presentToast("Recipe has been deleted");
+  }
+
+  async presentToast(msg: string) {
+    const toast = await this.toast.create({
+      message: msg,
+      duration: 2000,
+      color: "success",
+      position: "bottom"
+    });
+    toast.present();
   }
 
 

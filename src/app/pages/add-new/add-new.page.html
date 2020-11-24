@@ -1,72 +1,40 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add new recipe</ion-title>
+    <ion-title>New recipe</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
-  <ion-item class="first-item">
-    <ion-label class="type" color="dark" position="fixed">
-      {{ selectedType }}
-    </ion-label>
-    <ion-button fill="clear" size="small" (click)="showPicker()">
-      Select type
-      <ion-icon name="caret-down-outline"></ion-icon>
-    </ion-button>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">
-      <ion-icon name="image"></ion-icon>
-    </ion-label>
-    <ion-input slot="end" type="file" (change)="onSelectFile($event)" accept="image/png, image/jpeg"></ion-input>
-    <div *ngIf="url" class="img-container">
-      <img [src]="url" alt="">
-    </div>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Title</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Servings</ion-label>
-    <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="fixed">Time</ion-label>
-    <ion-note slot="end">min</ion-note>
-    <ion-input type="number" (change)="checkIfInteger($event)"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="stacked">Ingridients</ion-label>
-    <ion-button fill="clear" size="small" (click) = "addItem()">
-      <ion-icon name="add" size="default"></ion-icon>
-      New item
-    </ion-button>
-  </ion-item>
-  
-  <form ngNoForm>
-    <div *ngFor="let item of ingridientList; let i = index">     
-      <ion-item> 
-        <ion-input type="text">
-          <ion-note slot="start" size="large">• </ion-note>{{ item }}
-        </ion-input>
-        <ion-button fill="clear" size="small" color="danger" (click)="deleteItem(i)">
-          <ion-icon name="remove" size="large"></ion-icon>
-        </ion-button> 
+ 
+<ion-content padding>
+      <ion-item>
+        <ion-label position="stacked">Recipe title</ion-label>
+        <ion-input [(ngModel)]="recipe.title" placeholder=""></ion-input>
       </ion-item>
-    </div>
-  </form>
-   
-
-  <ion-item>
-    <ion-label position="fixed">Method</ion-label>
-    <ion-textarea autoGrow></ion-textarea>
-  </ion-item>
-
+      <ion-item>
+        <ion-label position="stacked">Amount of servings</ion-label>
+        <ion-input type="number" [(ngModel)]="recipe.servings" placeholder=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Prepare time </ion-label>
+        <ion-input type="number" [(ngModel)]="recipe.time" placeholder=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Ingridients (comma separated)</ion-label>
+        <ion-input [(ngModel)]="recipe.ingridients" placeholder=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Method</ion-label>
+        <ion-input [(ngModel)]="recipe.method" placeholder=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Image URL</ion-label>
+        <ion-input [(ngModel)]="recipe.pic" placeholder=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Type of recipe</ion-label>
+        <ion-select [(ngModel)]="recipe.recipeType">
+          <ion-select-option *ngFor="let type of types" [value]="type">{{ type }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="addRecipe()">Add Recipe</ion-button>
+ 
 </ion-content>

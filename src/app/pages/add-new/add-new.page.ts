@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PickerController, ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { PickerOptions } from "@ionic/core";
+import { DatabaseService} from './../../services/database.service';
+import { Observable } from 'rxjs';
+import { Recipe } from "../../../models/recipe";
 
 
 @Component({
@@ -10,116 +13,44 @@ import { PickerOptions } from "@ionic/core";
   styleUrls: ['./add-new.page.scss'],
 })
 export class AddNewPage implements OnInit {
-  // photo URL
-  url: string | ArrayBuffer;
-  // variable for checking if provided time or number of servings is positive integer
-  elementsAmount: number = 0;
-  // adds empty space for providing ingridient
-  newIngridient: string;
-  // list of ingridients
-  ingridientList: string[] = [];
-  // array with types of recipes
-  recipeType: string[] = ["Breakfast", "Lunch", "Salads", "Dinner", "Desserts", "Drinks"];
-  // variable which holds chosen type of recipe
-  selectedType = "Breakfast";
+  types:string[] = ["Breakfast", "Lunch", "Salads", "Dinner", "Desserts", "Drinks"];
+  recipes: Recipe[] = [];
+  recipe = {};
 
-  constructor(public toastController: ToastController, public pickerController: PickerController, public alertController: AlertController,) { }
+  constructor(public toastController: ToastController, public pickerController: PickerController, public alertController: AlertController, private db: DatabaseService) { }
 
-  ngOnInit() {}
-
-
-  // allows to preview selected photo
-
-  onSelectFile(event): void {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]);
-
-      reader.onload = (event) => {
-        this.url = event.target.result;
+  ngOnInit() {
+    this.db.getDatabaseState().subscribe(rdy => {
+      if (rdy) {
+        this.db.getRecipes().subscribe(recipes => {
+          this.recipes = recipes;
+        })
       }
-    }
+    });
   }
 
 
-  //  checking if provided number is positive
-  //  integer
+  addRecipe() {
+    let ingridients = this.recipe['ingridients'].split(',');
+    ingridients = ingridients.map(ingridient => ingridient.trim());
+ 
+    this.db.addRecipe(this.recipe['title'], this.recipe['servings'], this.recipe['time'], ingridients, this.recipe['method'], this.recipe['pic'], this.recipe['recipeType'])
+    .then(_ => {
+      this.recipe = {};
+    });
 
-  checkIfInteger(event): void {
-    this.elementsAmount = Number(event.target.value);
-    if(this.elementsAmount <= 0 || !Number.isInteger(this.elementsAmount)) {
-      this.presentToast();
-      event.target.class;
-      event.target.style.color = "#ff4961";
-     } else {
-      event.target.style.color = "#f4f5f8";
-    }
+    this.presentToast("Recipe has been added");
   }
 
-  // toast notificiation warning that provided number is not
-  // positive integer
 
-  async presentToast() {
+    async presentToast(msg: string) {
     const toast = await this.toastController.create({
-      message: 'Please provide a postive integer',
+      message: msg,
       duration: 2000,
-      color: "danger",
+      color: "success",
       position: "bottom"
     });
     toast.present();
-  }
-
-
-  // add item to an ingridient list
-  addItem(){    
-    this.ingridientList.push(this.newIngridient);
-    this.newIngridient = "";
-  }
-
-  // delete item from an ingridient list
-  deleteItem(i){
-    this.ingridientList.splice(i, 1);
-  }
-
-
-  // show picker with types of recipe to choose
-  async showPicker() {
-    let options: PickerOptions = {
-      buttons: [
-        {
-          text: "Cancel",
-          role: 'cancel'
-        },
-        {
-          text:'Select',
-
-          // executing code when clicked "Select"
-          handler:(value:any) => {
-            picker.onDidDismiss().then(async data => {
-              let col = await picker.getColumn("Type");
-              this.selectedType = col.options[col.selectedIndex].text;
-            })
-          }
-        }
-      ],
-      columns:[{
-        name:'Type',
-        options:this.getColumnOptions()
-      }]
-    };
-
-    let picker = await this.pickerController.create(options);
-    picker.present();
-
-  }
-
-  getColumnOptions(){
-    let options = [];
-    this.recipeType.forEach(x => {
-      options.push({text:x,value:x});
-    });
-    return options;
   }
 
 }
