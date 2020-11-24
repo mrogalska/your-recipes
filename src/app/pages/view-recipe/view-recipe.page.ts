@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DatabaseService } from './../../services/database.service';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ViewRecipePage implements OnInit {
     public location: Location,
     private db: DatabaseService,
     private toast: ToastController,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,29 @@ export class ViewRecipePage implements OnInit {
       position: "bottom"
     });
     toast.present();
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Delete Recipe',
+      message: 'Are you sure you want to delete this recipe?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'cancel',
+          handler: () => {
+          }
+        }, {
+          text: 'Delete',
+          handler: () => {
+            this.deleteRecipe();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 
