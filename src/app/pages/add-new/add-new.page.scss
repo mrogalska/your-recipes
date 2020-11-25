@@ -5,3 +5,11 @@ ion-card-content {
 .first-item {
     margin-top: 1rem;
 }
+
+.req {
+    color: var(--ion-color-danger);
+}
+
+.req-note {
+    color: rgba(var(--ion-color-danger-rgb), 0.5);
+}

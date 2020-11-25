@@ -20,7 +20,7 @@ export class UpdateRecipePage implements OnInit, OnChanges {
     public router: Router,
     public location: Location,
     private db: DatabaseService,
-    private toast: ToastController) { }
+    private toastController: ToastController) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -45,19 +45,34 @@ export class UpdateRecipePage implements OnInit, OnChanges {
 
 
   updateRecipe() {
-    let ingridients = this.ingridients.split(',');
-    ingridients = ingridients.map(ingridient => ingridient.trim());
-    this.recipe.ingridients = ingridients;
- 
-    this.db.updateRecipe(this.recipe).then(async (res) => {
-      let toast = await this.toast.create({
-        message: 'Recipe has been updated',
-        color: "success",
-        duration: 3000
-      });
-      toast.present();
-    });
-    this.location.back();
+    if (this.recipe['title'] && this.recipe['recipeType'] && this.recipe['ingridients'] && this.recipe['method']) {
+      let ingridients = this.ingridients.split(',');
+      ingridients = ingridients.map(ingridient => ingridient.trim());
+      this.recipe.ingridients = ingridients;
+      if (!this.recipe['servings']) {
+        this.recipe['servings'] = 0;
+      }
+      if (!this.recipe['time']) {
+        this.recipe['time'] = 0;
+      }
+      this.db.updateRecipe(this.recipe);
+      this.presentToast("Recipe has been updated", "success");
+      this.location.back();
+    }  else {
+      this.presentToast("Required fields cannot be empty", "danger");
+    }
   }
+
+    
+  async presentToast(msg: string, clr: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 3000,
+      color: clr,
+      position: "bottom"
+    });
+    toast.present();
+  }
+    
 
 }

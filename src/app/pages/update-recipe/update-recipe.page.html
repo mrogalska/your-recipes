@@ -10,7 +10,10 @@
 <ion-content padding>
   <div *ngIf="recipe">
     <ion-item>
-      <ion-label position="stacked">Recipe title</ion-label>
+      <ion-label position="stacked">
+        <span class="req">*</span>
+        Recipe title
+      </ion-label>
       <ion-input [(ngModel)]="recipe.title" placeholder=""></ion-input>
     </ion-item>
     <ion-item>
@@ -22,11 +25,17 @@
       <ion-input type="number" [(ngModel)]="recipe.time" placeholder=""></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Ingridients (comma separated)</ion-label>
+      <ion-label position="stacked">
+        <span class="req">*</span>
+        Ingridients (comma separated)
+      </ion-label>
       <ion-input [(ngModel)]="recipe.ingridients" placeholder=""></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Method</ion-label>
+      <ion-label position="stacked">
+        <span class="req">*</span>
+        Method
+      </ion-label>
       <ion-input [(ngModel)]="recipe.method" placeholder=""></ion-input>
     </ion-item>
     <ion-item>
@@ -34,11 +43,20 @@
       <ion-input [(ngModel)]="recipe.pic" placeholder=""></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Type of recipe</ion-label>
+      <ion-label position="stacked">
+        <span class="req">*</span>
+        Category
+      </ion-label>
       <ion-select [(ngModel)]="recipe.recipeType">
         <ion-select-option *ngFor="let type of types" [value]="type">{{ type }}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-button expand="block" (click)="updateRecipe()">Update Recipe</ion-button>
+    <ion-button color="dark" expand="block" (click)="updateRecipe()">Update Recipe</ion-button>
+    <ion-item>
+      <ion-label color="medium" position="stacked">
+        <span class="req-note">*</span>
+        Required field
+      </ion-label>
+    </ion-item>
   </div>
 </ion-content>
