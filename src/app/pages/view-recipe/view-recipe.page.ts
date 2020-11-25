@@ -80,5 +80,8 @@ export class ViewRecipePage implements OnInit {
     await alert.present();
   }
 
+  updateRecipe() {
+    this.router.navigate(['/']);
+  }
 
 }

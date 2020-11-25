@@ -18,7 +18,12 @@ const routes: Routes = [
   {
     path: 'view-recipe/:id',
     loadChildren: () => import('./pages/view-recipe/view-recipe.module').then( m => m.ViewRecipePageModule)
+  },
+  {
+    path: 'update-recipe/:id',
+    loadChildren: () => import('./pages/update-recipe/update-recipe.module').then( m => m.UpdateRecipePageModule)
   }
+
 
 ];
 

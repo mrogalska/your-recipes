@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update recipe</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <div *ngIf="recipe">
+    <ion-item>
+      <ion-label position="stacked">What\'s your title?</ion-label>
+      <ion-input [(ngModel)]="recipe.title" placeholder="Developer title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Servings?</ion-label>
+      <ion-input type="number" [(ngModel)]="recipe.servings" placeholder="Developer servings"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Time?</ion-label>
+      <ion-input type="number" [(ngModel)]="recipe.time" placeholder="Developer time"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">What are your special ingridients (comma separated)?</ion-label>
+      <ion-input [(ngModel)]="ingridients" placeholder="Special ingridients"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Method</ion-label>
+      <ion-input [(ngModel)]="recipe.method" placeholder="Method"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Your image URL</ion-label>
+      <ion-input [(ngModel)]="recipe.pic" placeholder="https://..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Type?</ion-label>
+      <ion-select [(ngModel)]="recipe.recipeType">
+        <ion-select-option *ngFor="let type of extractValuesFromEnum()" [value]="type">{{ type }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" (click)="updateRecipe()">Update Recipe Info</ion-button>
+  </div>
+</ion-content>
