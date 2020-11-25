@@ -1,5 +1,5 @@
 import { DatabaseService} from './../../services/database.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from 'src/models/recipe';
@@ -30,6 +30,5 @@ export class AllRecipesPage implements OnInit {
       }
     });
   }
-
 
 }

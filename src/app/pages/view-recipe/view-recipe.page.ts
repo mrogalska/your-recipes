@@ -16,6 +16,7 @@ import { AlertController } from '@ionic/angular';
 export class ViewRecipePage implements OnInit {
   recipe: Recipe = null;
   ingridients = '';
+  recipeId;
 
 
 
@@ -32,6 +33,7 @@ export class ViewRecipePage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let recipeId = params.get('id');
+      this.recipeId = recipeId;
  
       this.db.getRecipe(recipeId).then(data => {
         this.recipe = data;
@@ -50,7 +52,7 @@ export class ViewRecipePage implements OnInit {
   async presentToast(msg: string) {
     const toast = await this.toast.create({
       message: msg,
-      duration: 2000,
+      duration: 3000,
       color: "success",
       position: "bottom"
     });
@@ -81,7 +83,7 @@ export class ViewRecipePage implements OnInit {
   }
 
   updateRecipe() {
-    this.router.navigate(['/']);
+    this.router.navigate([`/update-recipe/${this.recipeId}`]);
   }
 
 }

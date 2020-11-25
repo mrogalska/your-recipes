@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Recipe } from 'src/models/recipe';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-recipe',
   templateUrl: './update-recipe.page.html',
   styleUrls: ['./update-recipe.page.scss'],
 })
-export class UpdateRecipePage implements OnInit {
+export class UpdateRecipePage implements OnInit, OnChanges {
   recipe: Recipe = null;
   ingridients = '';
+  types:string[] = ["Breakfast", "Lunch", "Salads", "Dinner", "Desserts", "Drinks"];
 
   constructor( 
     public route: ActivatedRoute,
@@ -30,6 +32,16 @@ export class UpdateRecipePage implements OnInit {
       });
     });
     }
+    ngOnChanges() {
+      this.route.paramMap.subscribe(params => {
+        let recipeId = params.get('id');
+   
+        this.db.getRecipe(recipeId).then(data => {
+          this.recipe = data;
+          this.ingridients = this.recipe.ingridients.join(', ');
+        });
+      });
+    }
 
 
   updateRecipe() {
@@ -40,11 +52,12 @@ export class UpdateRecipePage implements OnInit {
     this.db.updateRecipe(this.recipe).then(async (res) => {
       let toast = await this.toast.create({
         message: 'Recipe has been updated',
+        color: "success",
         duration: 3000
       });
       toast.present();
     });
+    this.location.back();
   }
-
 
 }
