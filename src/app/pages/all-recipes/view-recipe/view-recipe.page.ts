@@ -3,7 +3,7 @@ import { Recipe } from 'src/models/recipe';
 import { RecipeService } from "src/app/services/recipe.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { DatabaseService } from './../../services/database.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
